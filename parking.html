@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Parking</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+   <style>
+     #first{
+      padding-left: 550px;
+      padding-top: 50px;
+     }
+     #booking{
+      padding-left: 550px;
+      padding-top: 50px;
+     }
+     #second
+     {
+      list-style-type: disc;
+      color:red;
+     }
+     #frst{
+      list-style-type: disc;
+      color:green;
+     }
+   </style>
+</head>
+<body>
+   <div id="first">   <h3>PARKING SLOT</h3><br>
+   <h5>Please select a slot to book or select your Booked slot to exit...</h5>
+   <button class="btn btn-success" onclick="bookslot(0)" type="button">1</button>
+   <button class="btn btn-success" onclick="bookslot(1)" type="button">2</button>
+   <button class="btn btn-success" onclick="bookslot(2)" type="button">3</button>
+   <button class="btn btn-success" onclick="bookslot(3)" type="button">4</button>
+   <button class="btn btn-success" onclick="bookslot(4)" type="button">5</button>
+   <ul>
+      <li id="frst">Unbooked Slot</li>
+      <li id="second">Booked Slot</li>
+   </ul>
+</div>
+   <div id="booking"></div>
+<script>
+   var a=new Array();
+   var b=new Array();
+   var slot;
+   function bookslot(num)
+   {
+      slot=num;
+      if(a[slot]==""&&b[slot]==""||a[slot]==undefined&&b[slot]==undefined)
+      {
+       booking.innerHTML='<button class="btn btn-success" type="button" onclick="book()">Book Slot</button>'
+      }
+      else
+      {
+         booking.innerHTML='<button class="btn btn-danger" onclick="exit()" type="button">Exit Slot</button>'
+      }
+   }
+   function book()
+   {
+      booking.innerHTML="Register Your Name"+'<input type="text" id="name" style="width:350px" class="form-control">'+"Register your bike number"+'<input type="text" id="bikenum" class="form-control" style="width:350px">'+'<br>'+'<button type="button" onclick="done()" class="btn btn-success">Book</button>'
+   }
+   function exit()
+   {
+      booking.innerHTML="Enter Your Name"+'<input type="text" id="Ename" style="width:350px" class="form-control">'+"Enter your bike number"+'<input type="text" id="Ebikenum" class="form-control" style="width:350px">'+'<br>'+'<button type="button" onclick="exited()" class="btn btn-danger">Exit</button>'
+   }
+   function done()
+   {
+      if(name.value==""||bikenum.value=="")
+      {
+         alert("please fill the required inputs..");
+      }
+      else
+      {
+         a[slot]=document.getElementById('name').value;
+      b[slot]=document.getElementById('bikenum').value;
+      validate();
+   }}
+   function validate()
+   {
+      a[slot]=a[slot].toUpperCase();
+      b[slot]=b[slot].toUpperCase();
+      const pattern=/^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
+      const namepattern=/^[A-Z]+$/;
+      test2=pattern.test(b[slot]);
+      test1=namepattern.test(a[slot]);
+      console.log(test1,test2);
+      if(test2==true&&test1==true)
+      {
+      alert("Book Slot successfully...");
+      document.getElementsByTagName("button")[slot].style.backgroundColor="red";
+      document.getElementById('booking').innerHTML="";
+      }
+      else
+      {
+         alert("Invalid Inputs");
+      }
+   }
+   function exited()
+   {
+   let c=document.getElementById('Ename').value;
+   let d=document.getElementById('Ebikenum').value;
+   c=c.toUpperCase();d=d.toUpperCase();
+      if(c==a[slot]&&d==b[slot])
+      {
+         alert("Exited successfully...");
+         a[slot]="";b[slot]="";
+         document.getElementsByTagName("button")[slot].style.backgroundColor="#10bd1a";
+         document.getElementById('booking').innerHTML="";
+      }
+      else
+      {
+         alert("invalid inputs...");
+      }
+   }
+</script>
+</body>
+</html>
