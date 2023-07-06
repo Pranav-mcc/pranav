@@ -1,10 +1,5 @@
 let datas;
 let amtinp,amtbal;
- //let count= Number(sessionStorage.getItem('counts'))+1;
- //console.log(count);
- //sessionStorage.setItem('counts',count);
- //count=Number(sessionStorage.getItem('counts'))+1;
- //console.log(count);
 let a,b,c,d,pattern,pinnumber;
 let accBank;
 function forgetpass()
@@ -69,7 +64,8 @@ function pincreated()
   if(pinnumber.length==6)
   {
     alert("PIN CREATED");
-    sessionStorage.setItem('pin',pinnumber);
+    sessionStorage.setIte
+    m('pin',pinnumber);
   pin.innerHTML='<H5 style="text-align: center;">PIN NUMBER</H5>'+'<input class="form-control" id="pinno" onkeyup="pincheck()" type="number"/> '+'<br>'+'<a href="#" onclick="forgetpass()">Forget Pin</a>'+
   '<button type="button" style="margin-left: 90px;" class="btn btn-success" onclick="register()">Register</button>'
 }
@@ -136,7 +132,6 @@ function completedkyc()
     sessionStorage.setItem('name',name);
     sessionStorage.setItem('age',ages);
     sessionStorage.setItem('email',emails);
-
     sessionStorage.setItem('aadhar',aadhar);
     sessionStorage.setItem('pin',PIN);
     alert("KYC COMPLETED");
@@ -168,7 +163,8 @@ function linkacc()
   pin.innerHTML='<h2 style="text-align:center;">Link Account</h2><h5>Bank Name :</h5><input id="banknames" type="text" class="form-control">'
   +'<h5>IFSC Code :</h5><input type="text" id="ifsccodes" class="form-control"><h5>ACC No :</h5><input id="accnos" type="text" class="form-control">'
   +'<h5>Re-enter Acc No :</h5><input type="text" id="reacc" class="form-control"><h5>Balance :</h5><input id="balances" type="text" class="form-control">'
-  +'<br><button type="button" class="btn btn-success" onclick="accverify()">Link Acc</button>'
+  +'<br><button type="button" class="btn btn-success" onclick="accverify()">Link Acc</button><br>'+
+  '<button type="button" class="btn btn-success" onclick="back()">Back</button>'
 }
 function accverify()
 {
@@ -228,6 +224,7 @@ function accounts()
     '<H5>IFSC CODE :</H5>'+datas[i].ifsccode+'<br>'+'<H5>ACC NO :</H5>'+datas[i].accno+'<br>'+
      '<H5>BALANCE :</H5>'+datas[i].balance+'<br><br>'
  }
+ pin.innerHTML+='<button type="button" class="btn btn-success" onclick="back()">Back</button>'
 }
 function checkbal()
 {
@@ -239,7 +236,8 @@ function checkbal()
     option.text = datas[i].bankname;
     drop.add(option);
   }
-  pin.innerHTML+='<h4>T-PIN :</h4><input type="text" id="TPIN" class="form-control"><br><button onclick="showbalance()" type="button" class="btn btn-success" onclick="bal()">View Balance</button>'
+  pin.innerHTML+='<h4>T-PIN :</h4><input type="text" id="TPIN" class="form-control"><br><button onclick="showbalance()" type="button" class="btn btn-success" onclick="bal()">View Balance</button>'+
+  '<br><button type="button" class="btn btn-success" onclick="back()">Back</button>'
 }
 function showbalance()
 {
@@ -268,7 +266,7 @@ function profile()
   pin.style="width:550px";
   pin.innerHTML='<h2 style="text-align:center; color:green;">PROFILE</H2><BR><h5>NAME : '+sessionStorage.getItem('name')+
   '</h5><h5>AGE :'+sessionStorage.getItem('age')+'</h5><h5>EMAIL : '+sessionStorage.getItem('email')+
-  '</h5><h5>AADHAR NO :'+sessionStorage.getItem('aadhar')+'</h5>'+'<button type="button" onclick="back()">Back</button>'
+  '</h5><h5>AADHAR NO :'+sessionStorage.getItem('aadhar')+'</h5>'+'<button type="button" class="btn btn-success" onclick="back()">Back</button>'
 }
 function transfer()
 {
@@ -285,7 +283,8 @@ function transfer()
     trAcc.add(option);
   }
   pin.innerHTML+='<H5>Amount :</h5><input type="text" id="amt" class="form-control">'
-  +'<br><button type="button" onclick="moneytransfer()" class="btn btn-success">Send</button>'
+  +'<br><button type="button" onclick="moneytransfer()" class="btn btn-success">Send</button>'+
+  '<br><button type="button" class="btn btn-success" onclick="back()">Back</button>'
 }
 function moneytransfer()
 {
@@ -334,12 +333,10 @@ function checktpin()
     alert("WRONG TPIN..");
           back();
           
-  }
-  
+  } 
 }
 function back()
-{
-  
+{ 
   pin.innerHTML='<h2 style="text-align:center;color:green;">MENU</h2>'+'<h5 ><a onclick="profile()" style="text-decoration:none;" href="#">PROFILE</a></H5>'+'<h5><a onclick="transfer()" style="text-decoration:none;" href="#">TRANSFER</a></H5>'
   +'<h5><a href="#" style="text-decoration:none;" onclick="checkbal()">CHECK BALANCE</a></H5>'+'<h5><a style="text-decoration:none;" href="#" onclick="accounts()">ACCOUNTS</a></H5>'+'<h5><a onclick="linkacc() " style="text-decoration:none;" href="#">LINK ACC</a></H5>'
 }
